@@ -1,0 +1,1 @@
+Backup-SPFarm -Directory "E:\backup\teak backup" -BackupMethod Full -Item "http://teak.nibib.nih.gov" -Verbose

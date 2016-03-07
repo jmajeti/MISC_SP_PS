@@ -1,0 +1,14 @@
+SELECT
+       Webs.FullUrl,
+       DB_NAME() As[Database Name],
+       UF.tp_Login As [StewardID],
+       UF.tp_Title As [Steward Name],
+       Sites.DiskUsed As [Size]
+FROM Sites (NOLOCK)
+       INNER JOIN Webs (NOLOCK) ON Sites.Id = Webs.SiteId
+       INNER JOIN UserInfo UF (NOLOCK) ON Sites.Id = UF.tp_SiteID 
+       AND Sites.OwnerId = UF.tp_ID
+WHERE Webs.Fullurl NOT LIKE 'site%/%/%' 
+       AND UF.tp_IsActive = 1 
+       AND Sites.DiskUsed >= 21474836480
+ORDER BY Webs.FullURL
